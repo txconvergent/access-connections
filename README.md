@@ -3,14 +3,14 @@
 Project Guidelines
 
 Tech Stack:
-    Front-end:
-    Back-end:
-    Middleware:
-    Database:
+    Front-end: React
+    Back-end: Node
+    Middleware: Express
+    Database: MongoDB
 
 Assignments:
     Front-end:
-    Back-end:
+    Back-end: Michael, Neil
 
 Timeline:
     Week 1(2/19 - 2/26):
@@ -19,6 +19,6 @@ Timeline:
     Week 4(3/12 - 3/19):
     ...
 
-Outside Meeting Time:
+Outside Meeting Time: Wednesday 5-7 pm
 
-Favorite Lead(required):
+Favorite Lead(required): Estella
