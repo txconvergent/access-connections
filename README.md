@@ -9,8 +9,8 @@ Tech Stack:
     Database: MongoDB
 
 Assignments:
-    Front-end: Paul, Michael
-    Back-end: Jeffrey, Neil
+    Front-end: Paul, Adarsh, Kevin
+    Back-end: Jeffrey, Neil, Michael
 
 Timeline:
     Week 1(2/19 - 2/26): Finish README.md
