@@ -1,2 +1,6 @@
 /node_modules
 credentials.js
+package.json
+package-lock.json
+/client/package.json
+/client/package-lock.json
