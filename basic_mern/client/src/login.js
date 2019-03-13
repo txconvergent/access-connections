@@ -8,9 +8,9 @@ class Login extends React.Component {
           .then((res) => this.setState({data: res.data}))
       }
 
-      
+
     writeUserToDB = (user, pass) => {
-        Axios.post("/write_user", {
+        Axios.post('/write_user', {
             user: user,
             pass: pass
         })
@@ -33,7 +33,7 @@ state = {
             {this.state.data.length <= 0
               ? "No entries in database yet."
               : this.state.data.map(dat => (
-                <li style={{padding: "10px"}} key={this.state.data.message}>
+                <li style={{padding: "10px"}} key={dat._id}>
                   <span style={{color: "gray"}}> id: </span> {dat._id} <br/>
                   <span style={{color: "gray"}}> data: </span> {dat.message}
                   <span style={{color: "gray"}}> user: </span> {dat.user}

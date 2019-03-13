@@ -40,12 +40,12 @@ app.get("/get_data", (req, res) => {
 app.post("/write_user", (req, res) => {
   console.log("awlehgfiowehfoiwe")
   let data = new Data()
-  const {acct} = req.body
+  const {user, pass} = req.body
   console.log(req.body)
-  if (!acct) return res.json({success: false, error:"Invalid input."})
+  if (!user || !pass) return res.json({success: false, error:"Invalid input."})
 
-  data.user = acct.user
-  data.pass = acct.pass
+  data.user = user
+  data.pass = pass
   data.save(err => {
     if (err) return res.json({success: false, error: err})
     return res.json({success: true})
