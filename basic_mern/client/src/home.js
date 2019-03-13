@@ -38,6 +38,8 @@ class Home extends React.Component {
                 <li style={{padding: "10px"}} key={this.state.data.message}>
                   <span style={{color: "gray"}}> id: </span> {dat._id} <br/>
                   <span style={{color: "gray"}}> data: </span> {dat.message}
+                  <span style={{color: "gray"}}> user: </span> {dat.user}
+                  <span style={{color: "gray"}}> pass: </span> {dat.pass}
                 </li>
               ))}
           </ul>
