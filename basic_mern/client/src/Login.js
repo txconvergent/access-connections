@@ -1,5 +1,8 @@
 import React from 'react'
 class Login extends React.Component {
+
+
+  
   render() {
     return(
     <div>
@@ -15,7 +18,7 @@ class Login extends React.Component {
         <button onClick={() => this.deleteDataFromDB(this.state.id)}>delete</button>
       </div>
       <div style={{padding: "10px"}}>
-        <button onClick={() => this.getDataFromDB()}>load</button>
+        <button onClick={() => this.getDataFromDB()}>Submit</button>
       </div>
     </div>
     )
