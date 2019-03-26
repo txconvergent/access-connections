@@ -37,6 +37,21 @@ app.get("/get_data", (req, res) => {
   })
 })
 
+app.post("/write_user", (req, res) => {
+  console.log("awlehgfiowehfoiwe")
+  let data = new Data()
+  const {user, pass} = req.body
+  console.log(req.body)
+  if (!user || !pass) return res.json({success: false, error:"Invalid input."})
+
+  data.user = user
+  data.pass = pass
+  data.save(err => {
+    if (err) return res.json({success: false, error: err})
+    return res.json({success: true})
+  })
+})
+
 app.delete("/delete_data", (req, res) => {
   const {id} = req.body
   Data.findByIdAndDelete(id, (err) => {

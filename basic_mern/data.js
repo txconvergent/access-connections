@@ -3,7 +3,9 @@ const Schema = mongoose.Schema
 
 const DataSchema = new Schema(
   {
-    message: String
+    message: String,
+    user: String,
+    pass: String
   },
   {timestamps: true}
 )
