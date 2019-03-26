@@ -15,7 +15,6 @@ class Login extends React.Component {
             pass: pass
         })
         .then(() => this.getDataFromDB())
-        console.log(user, pass)
     }
 
 state = {

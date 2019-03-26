@@ -38,10 +38,8 @@ app.get("/get_data", (req, res) => {
 })
 
 app.post("/write_user", (req, res) => {
-  console.log("awlehgfiowehfoiwe")
   let data = new Data()
   const {user, pass} = req.body
-  console.log(req.body)
   if (!user || !pass) return res.json({success: false, error:"Invalid input."})
 
   data.user = user
