@@ -1,24 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
 import './index.css';
 import App from './App';
-import Users from './users'
-import Contact from './contact'
-import Login from './login'
 import * as serviceWorker from './serviceWorker';
 
-
-const routing = (
-	<Router>
-		<div>
-			<Route path="/" component={App} />
-			<Route path="/users" component={Users} />
-			<Route path="/contact" component={Contact} />
-			<Route path="/login" component={Login} />
-		</div>
-	</Router>
-)
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
