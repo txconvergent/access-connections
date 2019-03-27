@@ -10,4 +10,5 @@ const DataSchema = new Schema(
   {timestamps: true}
 )
 
+
 module.exports = mongoose.model("Data", DataSchema)

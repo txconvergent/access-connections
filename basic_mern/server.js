@@ -2,6 +2,7 @@ const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const credentials = require('./credentials')
 const Data = require('./data')
+const Listing = require('./listing_schema')
 
 const express = require('express')
 const app = express()
@@ -37,6 +38,13 @@ app.get("/get_data", (req, res) => {
   })
 })
 
+app.get("/get_listing", (req, res) => {
+  Listing.find((err, data) => {
+    if (err) return res.json({success: false, error: err})
+    return res.json({success: true, data: data})
+  })
+})
+
 app.post("/write_user", (req, res) => {
   let data = new Data()
   const {user, pass} = req.body
@@ -54,6 +62,19 @@ app.delete("/delete_data", (req, res) => {
   const {id} = req.body
   Data.findByIdAndDelete(id, (err) => {
     if (err) return res.send(err)
+    return res.json({success: true})
+  })
+})
+
+app.post("/write_listing", (req, res) => {
+  let listing = new Listing()
+  const {user, title} = req.body
+  if (!user || !title) return res.json({success: false, error:"Invalid input."})
+
+  listing.user = user
+  listing.title = title
+  listing.save (err => {
+    if (err) return res.json({success: false, error: err})
     return res.json({success: true})
   })
 })

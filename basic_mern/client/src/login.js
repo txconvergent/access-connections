@@ -6,6 +6,7 @@ class Login extends React.Component {
         fetch('/get_data')
           .then((data) => data.json())
           .then((res) => this.setState({data: res.data}))
+          console.log(this.state.data)
       }
 
 

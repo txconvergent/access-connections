@@ -3,25 +3,26 @@ import Axios from 'axios';
 class Listing extends React.Component {
 
     getDataFromDB = () => {
-        fetch('/get_data')
+        fetch('/get_listing')
           .then((data) => data.json())
           .then((res) => this.setState({data: res.data}))
       }
 
 
-    writeUserToDB = (user, pass) => {
-        Axios.post('/write_user', {
+    writeListingToDB = (user, title) => {
+      console.log(user, title)
+        Axios.post('/write_listing', {
             user: user,
-            pass: pass
+            title: title
         })
         .then(() => this.getDataFromDB())
-        console.log(user, pass)
     }
 
 state = {
     data: [],
     user: null,
-    pass: null
+    title: null,
+    number: null
 
 }
   
@@ -35,22 +36,22 @@ state = {
               : this.state.data.map(dat => (
                 <li style={{padding: "10px"}} key={dat._id}>
                   <span style={{color: "gray"}}> id: </span> {dat._id} <br/>
-                  <span style={{color: "gray"}}> data: </span> {dat.message}
                   <span style={{color: "gray"}}> user: </span> {dat.user}
-                  <span style={{color: "gray"}}> pass: </span> {dat.pass}
+                  <span style={{color: "gray"}}> title: </span> {dat.title}
+                  <span style={{color: "gray"}}> number: </span> {dat.listingNumber}
                 </li>
               ))}
           </ul>
       <div style={{padding: "10px"}}>
         <input type="text" onChange={(e) => this.setState({ user: e.target.value })}
-          placeholder="Username" style={{width: "200px"}}/>
+          placeholder="User" style={{width: "200px"}}/>
       </div>
       <div>
-        <input type="text" onChange={(e) => this.setState({ pass: e.target.value })}
-          placeholder="Password" style={{width: "200px"}}/>
+        <input type="text" onChange={(e) => this.setState({ title: e.target.value })}
+          placeholder="Title" style={{width: "200px"}}/>
       </div>
       <div style={{padding: "10px"}}>
-        <button onClick={() => this.writeUserToDB(this.state.user, this.state.pass)}>Submit</button>
+        <button onClick={() => this.writeListingToDB(this.state.user, this.state.title)}>Submit</button>
       </div>
     </div>
     )
