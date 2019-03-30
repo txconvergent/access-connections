@@ -9,21 +9,17 @@ class Listing extends React.Component {
       }
 
 
-    writeListingToDB = (user, title) => {
-      console.log(user, title)
+    writeListingToDB = (user, title, number) => {
         Axios.post('/write_listing', {
             user: user,
-            title: title
+            title: title,
+            number: number
         })
         .then(() => this.getDataFromDB())
     }
 
 state = {
     data: [],
-    user: null,
-    title: null,
-    number: null
-
 }
   
   render() {
@@ -46,12 +42,12 @@ state = {
         <input type="text" onChange={(e) => this.setState({ user: e.target.value })}
           placeholder="User" style={{width: "200px"}}/>
       </div>
-      <div>
+      <div style={{padding: "10px"}}>
         <input type="text" onChange={(e) => this.setState({ title: e.target.value })}
           placeholder="Title" style={{width: "200px"}}/>
       </div>
       <div style={{padding: "10px"}}>
-        <button onClick={() => this.writeListingToDB(this.state.user, this.state.title)}>Submit</button>
+        <button onClick={() => this.writeListingToDB(this.state.user, this.state.title, this.state.data.length)}>Submit</button>
       </div>
     </div>
     )

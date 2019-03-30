@@ -9,6 +9,16 @@ const DataSchema = new Schema(
   },
   {timestamps: true}
 )
+const ListingSchema = new Schema(
+  {
+    user: String,
+    title: String,
+    listingNumber: Number
+  },
+  {timestamps: true}
+)
 
-
-module.exports = mongoose.model("Data", DataSchema)
+module.exports = {
+  Data: mongoose.model("Data", DataSchema),
+  Listing: mongoose.model("Listing", ListingSchema)
+};
