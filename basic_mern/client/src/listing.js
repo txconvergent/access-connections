@@ -2,6 +2,17 @@ import React from 'react'
 import Axios from 'axios';
 class Listing extends React.Component {
 
+
+    uniqueTitle = (title) => {
+      var unique = true
+      this.state.data.forEach(obj => {
+        if(obj.title == title){
+          unique = false
+        }
+      })
+      return unique
+    }
+
     getDataFromDB = () => {
         fetch('/get_listing')
           .then((data) => data.json())
@@ -10,12 +21,14 @@ class Listing extends React.Component {
 
 
     writeListingToDB = (user, title, number) => {
+      if (this.uniqueTitle(title)){
         Axios.post('/write_listing', {
             user: user,
             title: title,
             number: number
         })
         .then(() => this.getDataFromDB())
+      }
     }
 
 state = {
