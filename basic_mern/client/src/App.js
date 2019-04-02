@@ -9,12 +9,14 @@ import Contact from './contact.js'
 import Login from './login.js'
 import Home from './home.js'
 import Listing from './listing.js'
+import Navbar from './navbar.js'
 
 class App extends Component {
 
   render() {
     return(
       <div>
+        <Navbar />
         <Router>
           <div>
             <Route exact path="/" component={Home} />
