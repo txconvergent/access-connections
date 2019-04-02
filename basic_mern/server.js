@@ -1,14 +1,15 @@
+const express = require('express')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const credentials = require('./credentials')
-const Data = require('./data')
-
-const express = require('express')
+const models = require('./data')
 const app = express()
+
+const Data = models.Data
+const Listing = models.Listing
 
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
-
 mongoose.connect(credentials.dbRoute, {useNewUrlParser: true})
 let db = mongoose.connection
 
@@ -37,11 +38,16 @@ app.get("/get_data", (req, res) => {
   })
 })
 
+app.get("/get_listing", (req, res) => {
+  Listing.find((err, data) => {
+    if (err) return res.json({success: false, error: err})
+    return res.json({success: true, data: data})
+  })
+})
+
 app.post("/write_user", (req, res) => {
-  console.log("awlehgfiowehfoiwe")
   let data = new Data()
   const {user, pass} = req.body
-  console.log(req.body)
   if (!user || !pass) return res.json({success: false, error:"Invalid input."})
 
   data.user = user
@@ -56,6 +62,20 @@ app.delete("/delete_data", (req, res) => {
   const {id} = req.body
   Data.findByIdAndDelete(id, (err) => {
     if (err) return res.send(err)
+    return res.json({success: true})
+  })
+})
+
+app.post("/write_listing", (req, res) => {
+  let listing = new Listing()
+  const {user, title, number} = req.body
+  if (!user || !title || !number) return res.json({success: false, error:"Invalid input."})
+  console.log(req.body)
+  listing.user = user
+  listing.title = title
+  listing.listingNumber = number
+  listing.save (err => {
+    if (err) return res.json({success: false, error: err})
     return res.json({success: true})
   })
 })
