@@ -74,6 +74,7 @@ app.post("/write_listing", (req, res) => {
   listing.user = user
   listing.title = title
   listing.listingNumber = number
+  listing.deleted = false
   listing.save (err => {
     if (err) return res.json({success: false, error: err})
     return res.json({success: true})
