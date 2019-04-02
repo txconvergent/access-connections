@@ -8,18 +8,6 @@ import Contact from './contact'
 import Login from './login'
 import * as serviceWorker from './serviceWorker';
 
-
-const routing = (
-	<Router>
-		<div>
-			<Route path="/" component={App} />
-			<Route path="/users" component={Users} />
-			<Route path="/contact" component={Contact} />
-			<Route path="/login" component={Login} />
-		</div>
-	</Router>
-)
-
 ReactDOM.render(<App />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change

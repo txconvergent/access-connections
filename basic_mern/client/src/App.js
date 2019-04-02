@@ -8,6 +8,7 @@ import Users from './users.js'
 import Contact from './contact.js'
 import Login from './login.js'
 import Home from './home.js'
+import About from './about.js'
 
 class App extends Component {
 
@@ -20,6 +21,7 @@ class App extends Component {
             <Route exact path="/users" component={Users} />
             <Route exact path="/contact" component={Contact} />
             <Route exact path="/login" component={Login} />
+            <Route exact path="/about" component={About} />
           </div>
         </Router>
       </div>
