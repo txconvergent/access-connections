@@ -17,18 +17,27 @@ class Listing extends React.Component {
         fetch('/get_listing')
           .then((data) => data.json())
           .then((res) => this.setState({data: res.data}))
+          this.state.data.forEach(function(dat) {
+            if (!dat.deleted)
+              console.log(dat)
+        })
       }
 
 
     writeListingToDB = (user, title, number) => {
-      if (this.uniqueTitle(title)){
         Axios.post('/write_listing', {
             user: user,
             title: title,
             number: number
         })
         .then(() => this.getDataFromDB())
-      }
+    }
+
+    deleteListing = (title) => {
+        Axios.delete('/delete_listing', {
+          title: title
+        })
+        .then(() => this.getDataFromDB())
     }
 
 state = {
@@ -40,9 +49,7 @@ state = {
     <div>
       <h1>Listing</h1>
       <ul>
-            {this.state.data.length <= 0
-              ? "No entries in database yet."
-              : this.state.data.map(dat => (
+            {this.state.data.map(dat => (
                 <li style={{padding: "10px"}} key={dat._id}>
                   <span style={{color: "gray"}}> id: </span> {dat._id} <br/>
                   <span style={{color: "gray"}}> user: </span> {dat.user}
