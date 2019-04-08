@@ -81,4 +81,8 @@ app.post("/write_listing", (req, res) => {
   })
 })
 
+app.delete("/delete_listing", (req, res) => {
+  const {title} = req.body
+})
+
 app.listen(port, () => console.log(`Listening on port ${port}.`))
