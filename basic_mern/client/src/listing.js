@@ -33,9 +33,9 @@ class Listing extends React.Component {
         .then(() => this.getDataFromDB())
     }
 
-    deleteListing = (title) => {
+    deleteListing = (number) => {
         Axios.delete('/delete_listing', {
-          title: title
+          number: number
         })
         .then(() => this.getDataFromDB())
     }
