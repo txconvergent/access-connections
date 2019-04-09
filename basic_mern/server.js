@@ -90,5 +90,9 @@ app.post("/write_listing", (req, res) => {
   })
 })
 
+/* app.save("/find_listing/:id", (req, res) => {
+  const id = req.params.id
+  Listing.findByIdAndUpdate(id, (deleted: True))
+}) */
 
 app.listen(port, () => console.log(`Listening on port ${port}.`))

@@ -14,7 +14,10 @@ const ListingSchema = new Schema(
     user: String,
     title: String,
     listingNumber: Number,
-    deleted: Boolean
+    deleted: Boolean,
+    description: String,
+    time: Date,
+    location: String
   },
   {timestamps: true}
 )

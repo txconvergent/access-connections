@@ -31,13 +31,6 @@ class Listing extends React.Component {
       }
     }
 
-    deleteListing = (number) => {
-      Axios.delete('/delete_listing', {
-        number: number
-      })
-      .then(() => this.getDataFromDB())
-  }
-
 state = {
     data: [],
 }

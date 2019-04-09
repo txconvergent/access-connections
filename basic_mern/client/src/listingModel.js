@@ -11,6 +11,14 @@ class ListingModel extends React.Component {
         })
     }
 
+    deleteListing = () => {
+        Axios.post('/delete_listing/' + this.props.match.params.id)
+        .then((res) => this.setState({listing: res.data}))
+        .catch(function (error) {
+            console.log(error);
+        })
+    }
+
 
 state = {
     listing: [],
