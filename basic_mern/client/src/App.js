@@ -9,6 +9,7 @@ import Contact from './contact.js'
 import Login from './login.js'
 import Home from './home.js'
 import Listing from './listing.js'
+import ListingModel from './listingModel.js'
 import Navbar from './navbar.js'
 
 class App extends Component {
@@ -24,6 +25,7 @@ class App extends Component {
             <Route exact path="/contact" component={Contact} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/listing" component={Listing} />
+            <Route exact path="/listing/:id" component={ListingModel} />
           </div>
         </Router>
       </div>
