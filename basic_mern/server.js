@@ -45,6 +45,15 @@ app.get("/get_listing", (req, res) => {
   })
 })
 
+app.get("/find_listing/:id", (req, res) => {
+  const id = req.params.id
+  Listing.findById(id, (err, data) => {
+    if (err) return res.send(err)
+    console.log(data)
+    return res.json(data)
+  })
+})
+
 app.post("/write_user", (req, res) => {
   let data = new Data()
   const {user, pass} = req.body
@@ -80,5 +89,6 @@ app.post("/write_listing", (req, res) => {
     return res.json({success: true})
   })
 })
+
 
 app.listen(port, () => console.log(`Listening on port ${port}.`))
