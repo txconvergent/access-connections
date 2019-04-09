@@ -38,21 +38,16 @@ state = {
   render() {
     return(
     <div>
+      {this.getDataFromDB()}
       <h1>Listing</h1>
       <ul>
             {this.state.data.length <= 0
               ? "No entries in database yet."
               : this.state.data.map(dat => (
                 <p>
-                <h3><a href="/listing/{dat._id}">{dat.title}</a></h3>
+                <h3><a href={"/listing/" + dat._id}>{dat.title}</a></h3>
                 {dat._id}
                 </p>
-                // <li style={{padding: "10px"}} key={dat._id}>
-                //   <span style={{color: "gray"}}> id: </span> {dat._id} <br/>
-                //   <span style={{color: "gray"}}> user: </span> {dat.user}
-                //   <span style={{color: "gray"}}> title: </span> {dat.title}
-                //   <span style={{color: "gray"}}> number: </span> {dat.listingNumber}
-                // </li>
               ))}
       </ul>
       <div style={{padding: "10px"}}>
