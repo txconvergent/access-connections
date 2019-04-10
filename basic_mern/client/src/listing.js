@@ -17,6 +17,7 @@ class Listing extends React.Component {
         fetch('/get_listing')
           .then((data) => data.json())
           .then((res) => this.setState({data: res.data}))
+
     }
 
 

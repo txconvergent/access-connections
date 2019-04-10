@@ -12,7 +12,7 @@ class ListingModel extends React.Component {
     }
 
     deleteListing = () => {
-        Axios.post('/delete_listing/' + this.props.match.params.id)
+        Axios.get('/delete_listing/' + this.props.match.params.id)
         .then((res) => this.setState({listing: res.data}))
         .catch(function (error) {
             console.log(error);
@@ -35,6 +35,9 @@ state = {
                         <div><h1>{this.state.listing.title}</h1>
                         <h2>{this.state.listing.user}</h2></div>
                         }
+                     <div style={{padding: "10px"}}>
+                    <button onClick={() => this.deleteListing()}>Take Job</button>
+                    </div>
                 </ul>
             </div>
         )
