@@ -49,7 +49,6 @@ app.get("/find_listing/:id", (req, res) => {
   const id = req.params.id
   Listing.findById(id, (err, data) => {
     if (err) return res.send(err)
-    console.log(data)
     return res.json(data)
   })
 })
@@ -90,9 +89,12 @@ app.post("/write_listing", (req, res) => {
   })
 })
 
-/* app.save("/find_listing/:id", (req, res) => {
+app.get("/delete_listing/:id", (req, res) => {
   const id = req.params.id
-  Listing.findByIdAndUpdate(id, (deleted: True))
-}) */
+  Listing.findByIdAndUpdate(id, {deleted: true}, (err, data) => {
+    if (err) return res.send(err)
+    return res.json(data)
+  })
+})
 
 app.listen(port, () => console.log(`Listening on port ${port}.`))
