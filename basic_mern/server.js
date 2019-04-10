@@ -76,12 +76,13 @@ app.delete("/delete_data", (req, res) => {
 
 app.post("/write_listing", (req, res) => {
   let listing = new Listing()
-  const {user, title, number} = req.body
+  const {user, title, number, description} = req.body
   if (!user || !title || !number) return res.json({success: false, error:"Invalid input."})
   console.log(req.body)
   listing.user = user
   listing.title = title
   listing.listingNumber = number
+  listing.description = description
   listing.deleted = false
   listing.save (err => {
     if (err) return res.json({success: false, error: err})

@@ -8,6 +8,13 @@ class Listing extends React.Component {
 
     this.handleShow = this.handleShow.bind(this);
     this.handleClose = this.handleClose.bind(this);
+
+    this.state = {
+      data: [],
+      show: false,
+    };
+  }
+
     uniqueTitle = (title) => {
       var unique = true
       this.state.data.forEach(obj => {
@@ -24,13 +31,6 @@ class Listing extends React.Component {
           .then((res) => this.setState({data: res.data}))
 
     }
-
-
-    this.state = {
-      data: [],
-      show: false,
-    };
-  }
 
   uniqueTitle = (title) => {
     var unique = true
@@ -49,12 +49,14 @@ class Listing extends React.Component {
   }
 
 
-  writeListingToDB = (user, title, number) => {
+  writeListingToDB = (user, title, number, description) => {
+    this.handleClose()
     if (this.uniqueTitle(title)){
       Axios.post('/write_listing', {
           user: user,
           title: title,
-          number: number
+          number: number,
+          description: description
       })
       .then(() => this.getDataFromDB())
     }
@@ -79,14 +81,28 @@ class Listing extends React.Component {
           </Modal.Header>
           <Modal.Body>
             <Form>
-
+              <Form.Group controlID="jobTitle">
+                <Form.Label>Name</Form.Label>
+                <Form.Control type="user" onChange={(e) => this.setState({ user: e.target.value })} 
+                placeholder="Enter name"/>
+              </Form.Group>
+              <Form.Group controlID="jobTitle">
+                <Form.Label>Job Title</Form.Label>
+                <Form.Control type="title" onChange={(e) => this.setState({ title: e.target.value })} 
+                placeholder="Enter job title"/>
+              </Form.Group>
+              <Form.Group controlID="jobDescription">
+                <Form.Label>Job Description</Form.Label>
+                <Form.Control type="description" onChange={(e) => this.setState({ description: e.target.value })} 
+                placeholder="Enter description"/>
+              </Form.Group>
             </Form>
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={this.handleClose}>
               Close
             </Button>
-            <Button variant="primary" onClick={this.handleClose}>
+            <Button variant="primary" onClick={() => this.writeListingToDB(this.state.user, this.state.title, this.state.data.length, this.state.description)}>
               Post
             </Button>
           </Modal.Footer>
@@ -107,23 +123,13 @@ class Listing extends React.Component {
                 <Col xs={3}>(INSERT IMG)</Col>
                 <Col xs={9}>
                   <h3><a href={"/listing/" + dat._id}>{dat.title}</a></h3>
-                  <p>{dat._id}</p>
+                  <h5>Posted by {dat.user}</h5>
+                  <p>{dat.description}</p>
                 </Col>
               </Row>
             </div>
           ))}
       </Container>
-      <div style={{padding: "10px"}}>
-        <input type="text" onChange={(e) => this.setState({ user: e.target.value })}
-          placeholder="User" style={{width: "200px"}}/>
-      </div>
-      <div style={{padding: "10px"}}>
-        <input type="text" onChange={(e) => this.setState({ title: e.target.value })}
-          placeholder="Title" style={{width: "200px"}}/>
-      </div>
-      <div style={{padding: "10px"}}>
-        <button onClick={() => this.writeListingToDB(this.state.user, this.state.title, this.state.data.length)}>Submit</button>
-      </div>
     </div>
     )
   }
