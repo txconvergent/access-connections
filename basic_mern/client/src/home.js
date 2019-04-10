@@ -13,12 +13,13 @@ class Home extends React.Component {
   render() {
     const{ open } = this.state;
     return(
-      <div>
-        <Jumbotron style= {styles.container}/*{backgroundColor: '#90caf9'}}>*/> 
-          <Container>
+      <div style= {{"z-index": "0", backgroundColor: "rgba(144, 202, 249, .6)"}}>
+        <Jumbotron style= {styles.container }> 
+          <div style={{backgroundColor: "rgba(255, 255, 255, 0.6)", width: "100%", height: "100%", position: "absolute", top: "0", left: "0", "z-index": "-1"}}></div>
+          <Container style={{"z-index": "1"}}>
             <div style={{paddingTop: '150px', paddingBottom: '100px'}}>
-              <h1>ConnectMeNow</h1>
-              <p>
+              <Button variant= "link" href= "/about"  style={{fontWeight: "bold", fontSize: '80px', color: "#0062cc"}}>ConnectMeNow</Button>
+              <p style={{}}>
                 We connect people to other people. 
               </p>
               <Row>
@@ -38,7 +39,7 @@ class Home extends React.Component {
               <Button large href="/about">About Us</Button>
               <Container style={{paddingTop: '25px'}}>
                 <Row>
-                   <Button>Log In</Button>
+                   <Button href="/login">Log In</Button>
                     <Button style={{marginLeft: "50px"}}>Sign Up</Button>
                 </Row>
               </Container>
@@ -59,8 +60,8 @@ class Home extends React.Component {
           </Row>
           <Row style = {{paddingTop: '50px'}}>
             <Collapse in={this.state.open}>
-              <div id="home-collapse-text">
-                <p style = {{textAlign: "center"}}>
+              <div id="home-collapse-text" style= {{margin: "auto"}}>
+                <p>
                   THIS NEEDS TO BE FILLED IN WITH A DESCRIPTION OF CONNECTMENOW
                 </p>
               </div>
@@ -72,13 +73,14 @@ class Home extends React.Component {
   }
 }
 
-const backgroundImage = "https://images.pexels.com/photos/414612/pexels-photo-414612.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-
+const backgroundImage = "http://worldartsme.com/images/people-helping-people-clipart-1.jpg"
 
 const styles = {
   container: {
     backgroundImage: `url(${backgroundImage})`,
-    opacity: 0.3
+    backgroundSize: "cover",
+    position: "relative",
+    "z-index": "1"
   }
 };
 
