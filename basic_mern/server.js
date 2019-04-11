@@ -49,6 +49,7 @@ app.get("/find_listing/:id", (req, res) => {
   const id = req.params.id
   Listing.findById(id, (err, data) => {
     if (err) return res.send(err)
+    console.log(data)
     return res.json(data)
   })
 })

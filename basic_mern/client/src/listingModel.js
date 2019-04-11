@@ -1,5 +1,6 @@
 import React from 'react'
 import Axios from 'axios';
+import {Container, Button, Row, Col} from 'react-bootstrap'
 
 class ListingModel extends React.Component {
 
@@ -9,6 +10,7 @@ class ListingModel extends React.Component {
         .catch(function (error) {
             console.log(error);
         })
+        console.log(this.state.listing)
     }
 
     deleteListing = () => {
@@ -28,17 +30,31 @@ state = {
         return(
             <div>
                 {this.findListing()}
-                <ul>
-                    {this.state.listing.length <= 0
-                        ? "Page not found"
-                        : 
-                        <div><h1>{this.state.listing.title}</h1>
-                        <h2>{this.state.listing.user}</h2></div>
-                        }
-                     <div style={{padding: "10px"}}>
-                    <button onClick={() => this.deleteListing()}>Take Job</button>
-                    </div>
-                </ul>
+                {this.state.listing.name == "CastError"
+                    ? 
+                    <Container>
+                        <Row>
+                            <Col xs={5}></Col>
+                            <Col>
+                                <h3>Page not Found</h3>
+                            </Col>
+                        </Row>
+                    </Container>
+                    : 
+                    <Container>
+                        <Row>
+                            <Col xs={5}>
+                                INSERT IMAGE
+                                <p><Button onClick={() => this.deleteListing()}>Take Job</Button></p>
+                            </Col>
+                            <Col xs={7}>
+                                <h2>{this.state.listing.title}</h2>
+                                <h6>Posted by {this.state.listing.user}</h6>
+                                <p>{this.state.listing.description}</p>
+                            </Col>
+                        </Row>
+                    </Container>
+                }
             </div>
         )
     }

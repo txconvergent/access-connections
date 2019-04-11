@@ -1,6 +1,6 @@
 import React from 'react'
 import Axios from 'axios';
-import {Form, Modal,Container, Button, Row, Col} from 'react-bootstrap'
+import {Form, Modal,Container, Button, Row, Col, Media} from 'react-bootstrap'
 class Listing extends React.Component {
 
   constructor(props, context) {
@@ -109,7 +109,7 @@ class Listing extends React.Component {
         </Modal>
         <Container>
           <Row>
-            <Col xs={3}><h1><b>Listings</b></h1></Col>
+            <Col xs={3}><h1>Listings</h1></Col>
             <Col xs={7}></Col>
             <Col cs={1}><Button variant="info" onClick={this.handleShow}>
             Post a listing
@@ -118,16 +118,16 @@ class Listing extends React.Component {
           {this.state.data.length <= 0
             ? "No listings yet."
             : this.state.data.map(dat => (
-              <div>
-                <Row>
+              <>
+              <Row>
                 <Col xs={3}>(INSERT IMG)</Col>
                 <Col xs={9}>
-                  <h3><a href={"/listing/" + dat._id}>{dat.title}</a></h3>
-                  <h5>Posted by {dat.user}</h5>
+                  <h4><a href={"/listing/" + dat._id}>{dat.title}</a></h4>
+                  <h6>Posted by {dat.user}</h6>
                   <p>{dat.description}</p>
                 </Col>
               </Row>
-            </div>
+            </>
           ))}
       </Container>
     </div>
