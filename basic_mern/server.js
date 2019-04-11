@@ -40,6 +40,7 @@ app.get("/get_data", (req, res) => {
 
 app.get("/get_listing", (req, res) => {
   Listing.find((err, data) => {
+    data = data.filter(dat => !dat.deleted)
     if (err) return res.json({success: false, error: err})
     return res.json({success: true, data: data})
   })

@@ -115,10 +115,8 @@ class Listing extends React.Component {
             Post a listing
             </Button></Col>
           </Row>
-          {this.state.data.length <= 0
-            ? "No listings yet."
-            : this.state.data.map(dat => (
-              <>
+          {this.state.data.map(dat => (
+            <>
               <Row>
                 <Col xs={3}>(INSERT IMG)</Col>
                 <Col xs={9}>
