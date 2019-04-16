@@ -15,11 +15,11 @@ class Home extends React.Component {
     return(
       <div style= {{"z-index": "0", backgroundColor: "rgba(144, 202, 249, .6)"}}>
         <Jumbotron style= {styles.container }> 
-          <div style={{backgroundColor: "rgba(255, 255, 255, 0.6)", width: "100%", height: "100%", position: "absolute", top: "0", left: "0", "z-index": "-1"}}></div>
+          <div style={{backgroundColor: "rgba(255, 255, 255, 0.8)", width: "100%", height: "100%", position: "absolute", top: "0", left: "0", "z-index": "-1"}}></div>
           <Container style={{"z-index": "1"}}>
             <div style={{paddingTop: '150px', paddingBottom: '100px'}}>
               <Button variant= "link" href= "/about"  style={{fontWeight: "bold", fontSize: '80px', color: "#0062cc"}}>ConnectMeNow</Button>
-              <p style={{}}>
+              <p style={{fontSize: '20px', fontWeight: 'bold', paddingLeft: '19px'}}>
                 We connect people to other people. 
               </p>
               <Row>
