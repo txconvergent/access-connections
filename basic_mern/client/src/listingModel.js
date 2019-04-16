@@ -10,7 +10,6 @@ class ListingModel extends React.Component {
         .catch(function (error) {
             console.log(error);
         })
-        console.log(this.state.listing)
     }
 
     deleteListing = () => {
@@ -45,7 +44,7 @@ state = {
                         <Row>
                             <Col xs={5}>
                                 INSERT IMAGE
-                                <p><Button onClick={() => this.deleteListing()}>Take Job</Button></p>
+                                <p><Button href={"/listing"} onClick={() => this.deleteListing()}>Take Job</Button></p>
                             </Col>
                             <Col xs={7}>
                                 <h2>{this.state.listing.title}</h2>
