@@ -20,6 +20,11 @@ class ListingModel extends React.Component {
         })
     }
 
+     arrayBufferToBase64 = () => {
+        let json = JSON.stringify(this.state.listing.image)
+        console.log(JSON.parse(json))
+    }
+
 
 state = {
     listing: [],
@@ -44,13 +49,17 @@ state = {
                         <Row>
                             <Col xs={5}>
                                 INSERT IMAGE
-                                <p><Button href={"/listing"} onClick={() => this.deleteListing()}>Take Job</Button></p>
+                                {this.arrayBufferToBase64()}
                             </Col>
+
                             <Col xs={7}>
                                 <h2>{this.state.listing.title}</h2>
                                 <h6>Posted by {this.state.listing.user}</h6>
                                 <p>{this.state.listing.description}</p>
                             </Col>
+                        </Row>
+                        <Row>
+                        <p><Button href={"/listing"} onClick={() => this.deleteListing()}>Take Job</Button></p>
                         </Row>
                     </Container>
                 }

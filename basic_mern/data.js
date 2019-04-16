@@ -17,7 +17,9 @@ const ListingSchema = new Schema(
     deleted: Boolean,
     description: String,
     time: Date,
-    location: String
+    location: String,
+    image: Buffer,
+    imageContentType: String
   },
   {timestamps: true}
 )

@@ -4,9 +4,11 @@ const mongoose = require('mongoose')
 const credentials = require('./credentials')
 const models = require('./data')
 const app = express()
+const fs = require('fs')
 
 const Data = models.Data
 const Listing = models.Listing
+const imgPath = '/Users/neil/Pictures/download.jpeg'
 
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
@@ -84,6 +86,8 @@ app.post("/write_listing", (req, res) => {
   listing.listingNumber = number
   listing.description = description
   listing.deleted = false
+  listing.image = fs.readFileSync(imgPath)
+  listing.imageContentType = "image/jpeg";
   listing.save (err => {
     if (err) return res.json({success: false, error: err})
     return res.json({success: true})
