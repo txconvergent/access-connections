@@ -13,7 +13,7 @@ class Listing extends React.Component {
       data: [],
       show: false,
     };
-  }
+  } 
 
     uniqueTitle = (title) => {
       var unique = true
@@ -32,14 +32,15 @@ class Listing extends React.Component {
 
     }
 
-  writeListingToDB = (user, title, number, description) => {
+  writeListingToDB = (user, title, number, description, image) => {
     this.handleClose()
     {
         Axios.post('/write_listing', {
             user: user,
             title: title,
             number: number,
-            description: description
+            description: description,
+            image: image
         })
         .then(() => this.getDataFromDB())
     }
@@ -78,13 +79,21 @@ class Listing extends React.Component {
                 <Form.Control type="description" onChange={(e) => this.setState({ description: e.target.value })} 
                 placeholder="Enter description"/>
               </Form.Group>
+              <Form.Group controlID="image">
+                <Form.Label>Image</Form.Label>
+                <Form.Control type="file" class="custom-file-input" id="customFile" accept=".jpg,.gif,.png" 
+                onChange={(e) => this.setState({ description: e.target.image })} ></Form.Control>
+              </Form.Group>
+              {/* <Form.Group controlID="date">
+
+              </Form.Group> */}
             </Form>
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={this.handleClose}>
               Close
             </Button>
-            <Button variant="primary" onClick={() => this.writeListingToDB(this.state.user, this.state.title, this.state.data.length, this.state.description)}>
+            <Button variant="primary" onClick={() => this.writeListingToDB(this.state.user, this.state.title, this.state.data.length, this.state.description, this.state.image)}>
               Post
             </Button>
           </Modal.Footer>
