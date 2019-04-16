@@ -50,7 +50,6 @@ app.get("/find_listing/:id", (req, res) => {
   const id = req.params.id
   Listing.findById(id, (err, data) => {
     if (err) return res.send(err)
-    console.log(data)
     return res.json(data)
   })
 })
@@ -80,7 +79,6 @@ app.post("/write_listing", (req, res) => {
   let listing = new Listing()
   const {user, title, number, description} = req.body
   if (!user || !title || !number) return res.json({success: false, error:"Invalid input."})
-  console.log(req.body)
   listing.user = user
   listing.title = title
   listing.listingNumber = number

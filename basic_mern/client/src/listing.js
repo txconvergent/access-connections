@@ -32,26 +32,9 @@ class Listing extends React.Component {
 
     }
 
-  uniqueTitle = (title) => {
-    var unique = true
-    this.state.data.forEach(obj => {
-      if(obj.title == title){
-        unique = false
-      }
-    })
-    return unique
-  }
-
-  getDataFromDB = () => {
-      fetch('/get_listing')
-        .then((data) => data.json())
-        .then((res) => this.setState({data: res.data}))
-  }
-
-
   writeListingToDB = (user, title, number, description) => {
     this.handleClose()
-    if (this.uniqueTitle(title)){
+   {
       Axios.post('/write_listing', {
           user: user,
           title: title,
