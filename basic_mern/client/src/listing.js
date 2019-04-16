@@ -51,7 +51,6 @@ class Listing extends React.Component {
 
   writeListingToDB = (user, title, number, description) => {
     this.handleClose()
-    if (this.uniqueTitle(title)){
       Axios.post('/write_listing', {
           user: user,
           title: title,
@@ -59,7 +58,6 @@ class Listing extends React.Component {
           description: description
       })
       .then(() => this.getDataFromDB())
-    }
   }
 
   handleClose() {
