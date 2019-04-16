@@ -80,7 +80,7 @@ app.delete("/delete_data", (req, res) => {
 app.post("/write_listing", (req, res) => {
   let listing = new Listing()
   const {user, title, number, description} = req.body
-  if (!user || !title || !number) return res.json({success: false, error:"Invalid input."})
+  if (!user || !title) return res.json({success: false, error:"Invalid input."})
   listing.user = user
   listing.title = title
   listing.listingNumber = number

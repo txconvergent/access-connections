@@ -34,17 +34,16 @@ class Listing extends React.Component {
 
   writeListingToDB = (user, title, number, description) => {
     this.handleClose()
-   {
-      Axios.post('/write_listing', {
-          user: user,
-          title: title,
-          number: number,
-          description: description
-      })
-      .then(() => this.getDataFromDB())
+    {
+        Axios.post('/write_listing', {
+            user: user,
+            title: title,
+            number: number,
+            description: description
+        })
+        .then(() => this.getDataFromDB())
     }
   }
-
   handleClose() {
     this.setState({ show: false });
   }
