@@ -34,7 +34,7 @@ class Listing extends React.Component {
 
   writeListingToDB = (user, title, number, description, image) => {
     this.handleClose()
-    var imgPath = document.getElementById("file-id").files[0].path
+    // var imgPath = document.getElementById("file-id").files[0].path
     console.log(image)
     {
         Axios.post('/write_listing', {
@@ -42,7 +42,7 @@ class Listing extends React.Component {
             title: title,
             number: number,
             description: description,
-            image: imgPath
+            image: image
         })
         .then(() => this.getDataFromDB())
     }
