@@ -20,11 +20,6 @@ class ListingModel extends React.Component {
         })
     }
 
-     arrayBufferToBase64 = () => {
-        let json = JSON.stringify(this.state.listing.image)
-        console.log(this.state.listing)
-    }
-
 state = {
     listing: [],
 }
