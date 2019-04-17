@@ -52,7 +52,15 @@ app.get("/find_listing/:id", (req, res) => {
   const id = req.params.id
   Listing.findById(id, (err, data) => {
     if (err) return res.send(err)
-    return res.json(data)
+    res.send(data)
+  })
+})
+
+app.get("/find_image/:id", (req, res) => {
+  const id = req.params.id
+  Listing.findById(id, (err, data) => {
+    if (err) return res.send(err)
+    res.send(data.image)
   })
 })
 
@@ -79,15 +87,16 @@ app.delete("/delete_data", (req, res) => {
 
 app.post("/write_listing", (req, res) => {
   let listing = new Listing()
-  const {user, title, number, description} = req.body
+  const {user, title, number, description, image} = req.body
   if (!user || !title) return res.json({success: false, error:"Invalid input."})
   listing.user = user
   listing.title = title
   listing.listingNumber = number
   listing.description = description
   listing.deleted = false
-  listing.image = fs.readFileSync(imgPath)
-  listing.imageContentType = "image/jpeg";
+  console.log(image)
+  listing.image = fs.readFileSync(image)
+  listing.imageContentType = "image/jpg";
   listing.save (err => {
     if (err) return res.json({success: false, error: err})
     return res.json({success: true})

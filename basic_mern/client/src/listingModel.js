@@ -1,6 +1,6 @@
 import React from 'react'
 import Axios from 'axios';
-import {Container, Button, Row, Col} from 'react-bootstrap'
+import {Container, Button, Row, Col, Image} from 'react-bootstrap'
 
 class ListingModel extends React.Component {
 
@@ -22,9 +22,8 @@ class ListingModel extends React.Component {
 
      arrayBufferToBase64 = () => {
         let json = JSON.stringify(this.state.listing.image)
-        console.log(JSON.parse(json))
+        console.log(this.state.listing)
     }
-
 
 state = {
     listing: [],
@@ -48,10 +47,8 @@ state = {
                     <Container>
                         <Row>
                             <Col xs={5}>
-                                INSERT IMAGE
-                                {this.arrayBufferToBase64()}
+                                <Image src={"/find_image/" + this.props.match.params.id} fluid/>
                             </Col>
-
                             <Col xs={7}>
                                 <h2>{this.state.listing.title}</h2>
                                 <h6>Posted by {this.state.listing.user}</h6>

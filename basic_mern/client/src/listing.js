@@ -34,13 +34,15 @@ class Listing extends React.Component {
 
   writeListingToDB = (user, title, number, description, image) => {
     this.handleClose()
+    var imgPath = document.getElementById("file-id").files[0].path
+    console.log(image)
     {
         Axios.post('/write_listing', {
             user: user,
             title: title,
             number: number,
             description: description,
-            image: image
+            image: imgPath
         })
         .then(() => this.getDataFromDB())
     }
@@ -82,11 +84,8 @@ class Listing extends React.Component {
               <Form.Group controlID="image">
                 <Form.Label>Image</Form.Label>
                 <Form.Control type="file" class="custom-file-input" id="customFile" accept=".jpg,.gif,.png" 
-                onChange={(e) => this.setState({ description: e.target.image })} ></Form.Control>
+                onChange={(e) => this.setState({ image: e.target.value })} ></Form.Control>
               </Form.Group>
-              {/* <Form.Group controlID="date">
-
-              </Form.Group> */}
             </Form>
           </Modal.Body>
           <Modal.Footer>
