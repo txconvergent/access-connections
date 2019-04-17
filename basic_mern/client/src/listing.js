@@ -1,6 +1,6 @@
 import React from 'react'
 import Axios from 'axios';
-import {Form, Modal,Container, Button, Row, Col, Media} from 'react-bootstrap'
+import {Form, Modal,Container, Button, Row, Col, Media, Image} from 'react-bootstrap'
 class Listing extends React.Component {
 
   constructor(props, context) {
@@ -108,7 +108,10 @@ class Listing extends React.Component {
           {this.state.data.map(dat => (
             <>
               <Row>
-                <Col xs={3}>(INSERT IMG)</Col>
+                <Col xs={3}>
+                (INSERT IMG)
+                <Image src={"/find_image/" + dat._id} fluid/>
+                </Col>
                 <Col xs={9}>
                   <h4><a href={"/listing/" + dat._id}>{dat.title}</a></h4>
                   <h6>Posted by {dat.user}</h6>
