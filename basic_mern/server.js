@@ -86,15 +86,16 @@ app.delete("/delete_data", (req, res) => {
 })
 
 app.post("/write_listing", (req, res) => {
+  console.log("LOG")
   let listing = new Listing()
-  const {user, title, number, description, image} = req.body
+  const {user, title, number, description, formData} = req.body
+  console.log(formData.get('file'))
   if (!user || !title) return res.json({success: false, error:"Invalid input."})
   listing.user = user
   listing.title = title
   listing.listingNumber = number
   listing.description = description
   listing.deleted = false
-  console.log(image)
   listing.image = fs.readFileSync(image)
   listing.imageContentType = "image/jpg";
   listing.save (err => {
