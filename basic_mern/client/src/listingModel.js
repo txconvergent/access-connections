@@ -28,12 +28,25 @@ state = {
     render(){
         return(
             <div>
+                      <style type='text/css'>
+      {`
+      body {
+    background-color: #90caf9;
+}
+
+.row {
+    background-color: white;
+    border-style: solid;
+    border-color: #90caf9;
+    padding: 25px;
+}`}
+</style>
                 {this.findListing()}
                 {this.state.listing.name == "CastError"
                     ? 
                     <Container>
-                        <Row>
-                            <Col xs={5}></Col>
+                        <Row lg={true}>
+                            <Col lg={5}></Col>
                             <Col>
                                 <h3>Page not Found</h3>
                             </Col>
@@ -42,10 +55,10 @@ state = {
                     : 
                     <Container>
                         <Row>
-                            <Col xs={5}>
+                            <Col lg={5}>
                                 <Image src={"/find_image/" + this.props.match.params.id} class = "img-responsive" width = "100%"/>
                             </Col>
-                            <Col xs={7}>
+                            <Col lg={true}>
                                 <h2>{this.state.listing.title}&nbsp;&nbsp;&nbsp;<Button href={"/listing"} variant="info" onClick={() => this.deleteListing()}>Take Job</Button></h2>
                                 <h6>Posted by {this.state.listing.user}</h6>
                                 <p>{this.state.listing.description}</p>
