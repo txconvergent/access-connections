@@ -76,8 +76,8 @@ class Listing extends React.Component {
 .row {
     background-color: white;
     border-style: solid;
-    border-color: green;
-    padding: 50px;
+    border-color: #90caf9;
+    padding: 25px;
 }`}
 </style>
       {this.getDataFromDB()}
@@ -138,7 +138,6 @@ class Listing extends React.Component {
                   <h6>Posted by {dat.user}</h6>
                   <p>Description: {dat.description}</p>
                   <p><i>Posted on {dat.date}</i></p>
-                  <p>&nbsp;</p>
                 </Col>
               </Row>
             </div>
