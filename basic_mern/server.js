@@ -127,4 +127,12 @@ app.get("/delete_listing/:id", (req, res) => {
   })
 })
 
+app.get("/find_user/:name", (req, res) => {
+  const name = req.params.name
+  Data.find({user: name}, function (err, docs) {
+    if (err) return res.send(err)
+    return res.json(docs)
+  })
+})
+
 app.listen(port, () => console.log(`Listening on port ${port}.`))
