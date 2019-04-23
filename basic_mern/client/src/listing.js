@@ -13,6 +13,7 @@ class Listing extends React.Component {
     this.state = {
       data: [],
       show: false,
+      selectedFile: null
     };
   } 
 
@@ -36,12 +37,21 @@ class Listing extends React.Component {
   writeListingToDB = (user, title, number, description, image) => {
     this.handleClose()
     {
+      var today = new Date(); 
+      var hour = today.getHours();
+      var endTime = " am";
+      if (hour > 12) {
+        hour = hour - 12
+        endTime = " pm"
+      }
+      var date = (today.getMonth()+1)+'-'+today.getDate()+'-'+today.getFullYear()+" at "+hour + ":" + today.getMinutes()+endTime;
         Axios.post('/write_listing', {
             user: user,
             title: title,
             number: number,
             description: description,
-            image: image
+            image: image,
+            date: date
         })
         .then(() => this.getDataFromDB())
     }
@@ -53,7 +63,6 @@ class Listing extends React.Component {
   handleShow() {
     this.setState({ show: true });
   }
-
   
   render() {
     return(
@@ -64,12 +73,8 @@ class Listing extends React.Component {
     background-color: #90caf9;
 }
 
-.container {
-    background-color: coral
-}
-
 .row {
-    background-color: palegoldenrod;
+    background-color: white;
     border-style: solid;
     border-color: green;
     padding: 50px;
@@ -99,7 +104,7 @@ class Listing extends React.Component {
               </Form.Group>
               <Form.Group controlID="image">
                 <Form.Label>Image</Form.Label>
-                <Form.Control type="file" class="custom-file-input" id="customFile" accept=".jpg,.gif,.png" 
+                <Form.Control type="file" class="custom-file-input" id="customFile" accept="image/*" 
                 onChange={(e) => this.setState({ image: e.target.value })} ></Form.Control>
               </Form.Group>
             </Form>
@@ -125,13 +130,15 @@ class Listing extends React.Component {
             <div>
               <Row>
                 <Col xs={3}>
-                (INSERT IMG)
                 <Image src={"/find_image/" + dat._id} fluid/>
+                <p>&nbsp;</p>
                 </Col>
                 <Col xs={3}>
                   <h4><a href={"/listing/" + dat._id}>{dat.title}</a></h4>
                   <h6>Posted by {dat.user}</h6>
                   <p>Description: {dat.description}</p>
+                  <p><i>Posted on {dat.date}</i></p>
+                  <p>&nbsp;</p>
                 </Col>
               </Row>
             </div>

@@ -1,6 +1,7 @@
 import React from 'react'
 import Axios from 'axios';
 import {Container, Button, Row, Col, Image} from 'react-bootstrap'
+import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 
 class ListingModel extends React.Component {
 
@@ -42,16 +43,25 @@ state = {
                     <Container>
                         <Row>
                             <Col xs={5}>
-                                <Image src={"/find_image/" + this.props.match.params.id} fluid/>
+                                <Image src={"/find_image/" + this.props.match.params.id} class = "img-responsive" width = "100%"/>
                             </Col>
                             <Col xs={7}>
-                                <h2>{this.state.listing.title}</h2>
+                                <h2>{this.state.listing.title}&nbsp;&nbsp;&nbsp;<Button href={"/listing"} variant="info" onClick={() => this.deleteListing()}>Take Job</Button></h2>
                                 <h6>Posted by {this.state.listing.user}</h6>
                                 <p>{this.state.listing.description}</p>
+                                <p><i>Posted on {this.state.listing.date}</i></p>
+                                <Map google={this.props.google} zoom={14}>
+                                    <Marker onClick={this.onMarkerClick}
+                                        name={'Current location'} />
+                                    <InfoWindow onClose={this.onInfoWindowClose}>
+                                        <div>
+                                            {/* <h1>{this.state.selectedPlace.name}</h1> */}
+                                        </div>
+                                    </InfoWindow>
+                                </Map>
+                                <p>&nbsp;</p>
+                                <p><Button href={"/listing"} variant="info" onClick={() => this.deleteListing()}>Take Job</Button></p>
                             </Col>
-                        </Row>
-                        <Row>
-                        <p><Button href={"/listing"} onClick={() => this.deleteListing()}>Take Job</Button></p>
                         </Row>
                     </Container>
                 }
@@ -59,4 +69,6 @@ state = {
         )
     }
 }
-export default ListingModel
+export default GoogleApiWrapper({
+    apiKey: "AIzaSyAyesbQMyKVVbBgKVi2g6VX7mop2z96jBo"
+  })(ListingModel)

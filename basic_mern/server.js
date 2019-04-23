@@ -8,7 +8,7 @@ const fs = require('fs')
 
 const Data = models.Data
 const Listing = models.Listing
-const imgPath = '/Users/neil/Pictures/download.jpeg'
+const imgPath = 'pic.png'
 
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
@@ -98,16 +98,16 @@ app.delete("/delete_data", (req, res) => {
 
 app.post("/write_listing", (req, res) => {
   let listing = new Listing()
-  const {user, title, number, description, image} = req.body
+  const {user, title, number, description, image, date} = req.body
   if (!user || !title) return res.json({success: false, error:"Invalid input."})
   listing.user = user
   listing.title = title
   listing.listingNumber = number
   listing.description = description
   listing.deleted = false
-  console.log(image)
+  listing.date = date
   if (image) {
-    listing.image = fs.readFileSync(image)
+    listing.image = fs.readFileSync(imgPath)
     listing.imageContentType = "image/jpg";
   }
   else {
