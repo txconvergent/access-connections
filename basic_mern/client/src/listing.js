@@ -35,20 +35,22 @@ class Listing extends React.Component {
 
   writeListingToDB = (user, title, number, description, image) => {
     this.handleClose()
-<<<<<<< HEAD
-    const formData = new FormData();
-    formData.append('file', image)
-    console.log(image)
-    console.log(formData.get('file'))
-=======
->>>>>>> 1b50184e81624719e601c573a0476368ab40825d
     {
+      var today = new Date(); 
+      var hour = today.getHours();
+      var endTime = " am";
+      if (hour > 12) {
+        hour = hour - 12
+        endTime = " pm"
+      }
+      var date = (today.getMonth()+1)+'-'+today.getDate()+'-'+today.getFullYear()+" at "+hour + ":" + today.getMinutes()+endTime;
         Axios.post('/write_listing', {
             user: user,
             title: title,
             number: number,
             description: description,
-            formData: formData
+            image: image,
+            date: date
         })
         .then(() => this.getDataFromDB())
     }
@@ -89,7 +91,7 @@ class Listing extends React.Component {
               <Form.Group controlID="image">
                 <Form.Label>Image</Form.Label>
                 <Form.Control type="file" class="custom-file-input" id="customFile" accept="image/*" 
-                onChange={(e) => this.setState({ image: e.target.files[0] })} ></Form.Control>
+                onChange={(e) => this.setState({ image: e.target.value })} ></Form.Control>
               </Form.Group>
             </Form>
           </Modal.Body>
@@ -114,13 +116,15 @@ class Listing extends React.Component {
             <>
               <Row>
                 <Col xs={3}>
-                (INSERT IMG)
                 <Image src={"/find_image/" + dat._id} fluid/>
+                <p>&nbsp;</p>
                 </Col>
                 <Col xs={9}>
                   <h4><a href={"/listing/" + dat._id}>{dat.title}</a></h4>
                   <h6>Posted by {dat.user}</h6>
                   <p>{dat.description}</p>
+                  <p><i>Posted on {dat.date}</i></p>
+                  <p>&nbsp;</p>
                 </Col>
               </Row>
             </>

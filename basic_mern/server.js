@@ -8,7 +8,7 @@ const fs = require('fs')
 
 const Data = models.Data
 const Listing = models.Listing
-const imgPath = '/Users/neil/Pictures/download.jpeg'
+const imgPath = 'pic.png'
 
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
@@ -97,29 +97,22 @@ app.delete("/delete_data", (req, res) => {
 })
 
 app.post("/write_listing", (req, res) => {
-  console.log("LOG")
   let listing = new Listing()
-  const {user, title, number, description, formData} = req.body
-  console.log(formData.get('file'))
+  const {user, title, number, description, image, date} = req.body
   if (!user || !title) return res.json({success: false, error:"Invalid input."})
   listing.user = user
   listing.title = title
   listing.listingNumber = number
   listing.description = description
   listing.deleted = false
-<<<<<<< HEAD
-  listing.image = fs.readFileSync(image)
-  listing.imageContentType = "image/jpg";
-=======
-  console.log(image)
+  listing.date = date
   if (image) {
-    listing.image = fs.readFileSync(image)
+    listing.image = fs.readFileSync(imgPath)
     listing.imageContentType = "image/jpg";
   }
   else {
     listing.image = app.get("/find_image/5cb64e9afd36341fe726f3b3"), (req, res) 
   }
->>>>>>> 1b50184e81624719e601c573a0476368ab40825d
   listing.save (err => {
     if (err) return res.json({success: false, error: err})
     return res.json({success: true})

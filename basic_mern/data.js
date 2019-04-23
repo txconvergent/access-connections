@@ -16,10 +16,10 @@ const ListingSchema = new Schema(
     listingNumber: Number,
     deleted: Boolean,
     description: String,
-    time: Date,
     location: String,
     image: Buffer,
-    imageContentType: String
+    imageContentType: String,
+    date: String
   },
   {timestamps: true}
 )
