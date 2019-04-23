@@ -35,10 +35,13 @@ class Listing extends React.Component {
 
   writeListingToDB = (user, title, number, description, image) => {
     this.handleClose()
+<<<<<<< HEAD
     const formData = new FormData();
     formData.append('file', image)
     console.log(image)
     console.log(formData.get('file'))
+=======
+>>>>>>> 1b50184e81624719e601c573a0476368ab40825d
     {
         Axios.post('/write_listing', {
             user: user,

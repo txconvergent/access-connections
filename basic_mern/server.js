@@ -59,8 +59,19 @@ app.get("/find_listing/:id", (req, res) => {
 app.get("/find_image/:id", (req, res) => {
   const id = req.params.id
   Listing.findById(id, (err, data) => {
-    if (err) return res.send(err)
-    res.send(data.image)
+    if (err) {
+      return res.send(err)
+    }
+    if (data.image) {
+      res.send(data.image)
+    }
+    else {
+      default_id = "5cb64e9afd36341fe726f3b3"
+      Listing.findById(default_id, (error, dat)=> {
+        if (error) return res.send(err)
+        return res.send(dat.image)
+      })
+    }
   })
 })
 
@@ -96,8 +107,19 @@ app.post("/write_listing", (req, res) => {
   listing.listingNumber = number
   listing.description = description
   listing.deleted = false
+<<<<<<< HEAD
   listing.image = fs.readFileSync(image)
   listing.imageContentType = "image/jpg";
+=======
+  console.log(image)
+  if (image) {
+    listing.image = fs.readFileSync(image)
+    listing.imageContentType = "image/jpg";
+  }
+  else {
+    listing.image = app.get("/find_image/5cb64e9afd36341fe726f3b3"), (req, res) 
+  }
+>>>>>>> 1b50184e81624719e601c573a0476368ab40825d
   listing.save (err => {
     if (err) return res.json({success: false, error: err})
     return res.json({success: true})
