@@ -1,6 +1,7 @@
 import React from 'react'
 import Axios from 'axios';
 import {Form, Modal,Container, Button, Row, Col, Media, Image} from 'react-bootstrap'
+
 class Listing extends React.Component {
 
   constructor(props, context) {
@@ -57,6 +58,23 @@ class Listing extends React.Component {
   render() {
     return(
     <div>
+      <style type='text/css'>
+      {`
+      body {
+    background-color: #90caf9;
+}
+
+.container {
+    background-color: coral
+}
+
+.row {
+    background-color: palegoldenrod;
+    border-style: solid;
+    border-color: green;
+    padding: 50px;
+}`}
+</style>
       {this.getDataFromDB()}
         <Modal show={this.state.show} onHide={this.handleClose}>
           <Modal.Header closeButton>
@@ -104,19 +122,19 @@ class Listing extends React.Component {
             </Button></Col>
           </Row>
           {this.state.data.map(dat => (
-            <>
+            <div>
               <Row>
                 <Col xs={3}>
                 (INSERT IMG)
                 <Image src={"/find_image/" + dat._id} fluid/>
                 </Col>
-                <Col xs={9}>
+                <Col xs={3}>
                   <h4><a href={"/listing/" + dat._id}>{dat.title}</a></h4>
                   <h6>Posted by {dat.user}</h6>
-                  <p>{dat.description}</p>
+                  <p>Description: {dat.description}</p>
                 </Col>
               </Row>
-            </>
+            </div>
           ))}
       </Container>
     </div>
