@@ -18,9 +18,9 @@ class Home extends React.Component {
           <div style={{backgroundColor: "rgba(255, 255, 255, 0.8)", width: "100%", height: "100%", position: "absolute", top: "0", left: "0", "z-index": "-1"}}></div>
           <Container style={{"z-index": "1"}}>
             <div style={{paddingTop: '150px', paddingBottom: '100px'}}>
-              <Button variant= "link" href= "/about"  style={{fontWeight: "bold", fontSize: '80px', color: "#0062cc"}}>LinkD</Button>
+              <Button variant= "link" href= "/about"  style={{fontWeight: "bold", fontSize: '80px', color: "#0062cc"}}>Ally</Button>
               <p style={{fontSize: '20px', fontWeight: 'bold', paddingLeft: '19px'}}>
-                We connect people to other people. 
+                Connecting people in need. 
               </p>
               <Row>
                 <Col style={{paddingRight: '0px'}}>
@@ -36,36 +36,12 @@ class Home extends React.Component {
                   </Button>
                 </Col>
               </Row>
-              <Button large href="/about">About Us</Button>
-              <Container style={{paddingTop: '25px'}}>
-                <Row>
-                   <Button href="/login">Log In</Button>
-                    <Button style={{marginLeft: "50px"}}>Sign Up</Button>
-                </Row>
-              </Container>
             </div>
           </Container>
         </Jumbotron>
-        <Container style={{textAlign: "center"}}>
-          <Row>
-            <Col>
-              <Button 
-                onClick ={() => this.setState({ open: !open})}
-                aria-controls="example-collapse-text"
-                aria-expanded={open}
-              >
-                How it works
-              </Button>
-            </Col>
-          </Row>
-          <Row style = {{paddingTop: '50px'}}>
-            <Collapse in={this.state.open}>
-              <div id="home-collapse-text" style= {{margin: "auto"}}>
-                <p>
-                  THIS NEEDS TO BE FILLED IN WITH A DESCRIPTION OF CONNECTMENOW
-                </p>
-              </div>
-            </Collapse>
+        <Container>
+          <Row style = {{textAlign: "center", fontWeight: "bold", fontSize: '30px', color: "#0062cc"}}>
+                <p>“To assist people with disabilities by linking them to the volunteers that they need”</p>
           </Row>
         </Container>
       </div>
